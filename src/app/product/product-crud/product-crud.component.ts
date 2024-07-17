@@ -1,28 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductService } from '../../shared/services/product.service';
 import { Product } from '../../core/models/object-model';
 declare var jQuery: any;
 
 @Component({
+  standalone: true,
   selector: 'app-product-crud',
   templateUrl: './product-crud.component.html',
-  styleUrls: ['./product-crud.component.scss']
+  styleUrls: ['./product-crud.component.scss'],
+  imports: [ReactiveFormsModule]
 })
 export class ProductCrudComponent implements OnInit {
-  all_product_data;
-  addEditProductForm: FormGroup;
+  all_product_data: any;
+  addEditProductForm!: FormGroup;
   addEditProduct: boolean = false;//for form validation
-  popup_header: string;
-  add_product: boolean;
-  edit_product: boolean;
+  popup_header: any;
+  add_product: any;
+  edit_product: any;
 
-  product_data;
-  product_dto: Product;
+  product_data: any;
+  product_dto: any;
 
-  single_product_data;
-  edit_product_id;
+  single_product_data: any;
+  edit_product_id: any;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private product_service: ProductService) { }
 
@@ -79,7 +82,7 @@ export class ProductCrudComponent implements OnInit {
     })
   }
 
-  editProductPopup(id) {
+  editProductPopup(id: any) {
     this.add_product = false;
     this.edit_product = true;
     this.popup_header = "Edit Product";
@@ -125,7 +128,7 @@ export class ProductCrudComponent implements OnInit {
     })
   }
 
-  deleteProduct(id) {
+  deleteProduct(id: any) {
     let r = confirm("Do you want to delete the product ID: " + id + "?");
     if (r == true) {
       this.product_service.deleteProduct(id).subscribe(data => {

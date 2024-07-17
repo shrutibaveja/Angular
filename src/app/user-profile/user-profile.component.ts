@@ -12,18 +12,18 @@ import { UserService } from '../shared/services/user.service';
 })
 export class UserProfileComponent implements OnInit {
 
-  userProfileForm: FormGroup;
+  userProfileForm!: FormGroup;
   userProfile = false;
-  user_id: number;
-  user_data;
-  user_updated_data;
-  user_dto: User;
+  user_id: number | undefined;
+  user_data:any;
+  user_updated_data: any;
+  user_dto: User | undefined;
 
   //data not available on form
   // upload_file_name;
-  user_profile_pic;
-  user_language;
-  user_role;
+  user_profile_pic: any;
+  user_language: any;
+  user_role: any;
 
 
   constructor(private formBuilder: FormBuilder, private router: Router, private user_service: UserService, private toastr: ToastrService) { }
@@ -51,7 +51,7 @@ export class UserProfileComponent implements OnInit {
 
   get rf() { return this.userProfileForm.controls; }
 
-  editUserData(user_id) {
+  editUserData(user_id: any) {
     this.user_service.getUserData(user_id).subscribe(data => {
       this.user_data = data;
       this.user_profile_pic = this.user_data.uploadPhoto;
