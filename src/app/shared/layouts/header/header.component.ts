@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   logged_in: Boolean = false;
   language: String = 'English';
-  user_role: String;
+  user_role: any;
 
   constructor(private translate: TranslateService, private router: Router) { }
 
